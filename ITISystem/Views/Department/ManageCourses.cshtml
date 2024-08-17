@@ -12,32 +12,39 @@
 
 </head>
 <body>
-    <h1>@ViewBag.DeptName Department</h1>
-    <form method="post">
-        <h3>
-            Courses In Dept
-        </h3>
-        <div>
-            <select name="coursesToRemove" multiple>
-                @foreach (Course item in ViewBag.crsInDept)
-                {
-                    <option value="@item.Id">@item.CrsName</option>
-                }
-            </select>
-        </div>
-        <h3>
-            Courses Not In Dept
-        </h3>
-        <div>
-            <select name="coursesToAdd" multiple>
-            @foreach (Course item in ViewBag.crsNotInDept)
-                {
-                    <option value="@item.Id">@item.CrsName</option>
-                }
-            </select>
-        </div>
 
-        <input type="Submit" value="Update" />
-    </form>
+    <h1 class="mx-2 mb-5">@ViewBag.DeptName Department</h1>
+    <div class="m-auto" style="width:90%">
+
+        <form method="post">
+            <div class="row mb-3 mt-2 d-flex justify-content-between">
+            
+                <div  class="col-6 border-2">
+                    <h3>
+                        Courses In Dept
+                    </h3>
+                    <select class="d-inline-block" style="width:80%;" name="coursesToRemove" multiple>
+                        @foreach (Course item in ViewBag.crsInDept)
+                        {
+                            <option value="@item.Id">@item.CrsName</option>
+                        }
+                    </select>
+                </div>
+                <div class="col-6 border-1">
+                    <h3>
+                        Courses Not In Dept
+                    </h3>
+                    <select class="d-inline-block" style="width:80%" name="coursesToAdd" multiple>
+                    @foreach (Course item in ViewBag.crsNotInDept)
+                        {
+                            <option value="@item.Id">@item.CrsName</option>
+                        }
+                    </select>
+                </div>
+            </div>
+
+            <input class="align-content-end" type="Submit" value="Update" />
+        </form>
+    </div>
 </body>
 </html>
