@@ -1,0 +1,27 @@
+﻿@model Department
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+
+    <title>AddGrade</title>
+</head>
+<body>
+        dept name = @Model.DeptName
+        course name = @ViewBag.crs.CrsName
+    <form method="post">
+        @foreach (var item in Model.Students)
+        {
+            @item.Name <input type="text" name="deg.@item.Id" /> <br />
+        }
+
+        <input type="submit" value="Add" />
+    </form>
+</body>
+</html>

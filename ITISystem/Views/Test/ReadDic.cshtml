@@ -1,0 +1,27 @@
+﻿
+@{
+    Layout = null;
+    List<string> names = ["ali", "ahmed", "mohammed", "sara"];
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>ReadDic</title>
+</head>
+<body>
+
+    <form method="post">
+        @foreach (var item in names)
+        {
+            <label>@item</label><br />
+            <input type="text" name="arr.@item" />
+            <br />
+
+        }
+        <input type="submit"  value="Add"/>
+        </form>
+</body>
+</html>

@@ -1,0 +1,43 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>ManageCourses</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+
+</head>
+<body>
+    <h1>@ViewBag.DeptName Department</h1>
+    <form method="post">
+        <h3>
+            Courses In Dept
+        </h3>
+        <div>
+            <select name="coursesToRemove" multiple>
+                @foreach (Course item in ViewBag.crsInDept)
+                {
+                    <option value="@item.Id">@item.CrsName</option>
+                }
+            </select>
+        </div>
+        <h3>
+            Courses Not In Dept
+        </h3>
+        <div>
+            <select name="coursesToAdd" multiple>
+            @foreach (Course item in ViewBag.crsNotInDept)
+                {
+                    <option value="@item.Id">@item.CrsName</option>
+                }
+            </select>
+        </div>
+
+        <input type="Submit" value="Update" />
+    </form>
+</body>
+</html>

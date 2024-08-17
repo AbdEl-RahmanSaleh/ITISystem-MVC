@@ -1,0 +1,21 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewData["Title"]</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link href="~/css/site.css" rel="stylesheet" />
+    <title>_Layout2</title>
+</head>
+<body>
+    @RenderBody()
+    <script src="~/lib/jquery/dist/jquery.js"></script>
+    @RenderSection("ValidationLibraries",false)
+</body>
+</html>

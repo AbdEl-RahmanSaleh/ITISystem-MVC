@@ -1,0 +1,55 @@
+﻿@model Student
+@{
+    Layout = "_Layout2";
+    ViewData["Title"] = "Details - Student";
+
+}
+
+@*     <h1 class="alert alert-danger">@Model.Id :: @Model.Name :: @Model.Age :: @Model.Email :: @Model.department.DeptName</h1>
+ *@  
+ 
+
+    
+    <div class="row mx-5 mb-3 mt-3">
+        <div class="col-8">
+            <form asp-action="Details" asp-controller="Student">
+                <div class="form-group has-danger">
+                    <label asp-for="@Model.Name" class="col-form-label"></label>
+                    <input asp-for="@Model.Name" class="form-control" readonly />
+                </div>
+                <div class="form-group has-danger">
+                    <label asp-for="@Model.ImgUrl" class="col-form-label">@Model.Name's Image</label>
+                    <br />
+                    <img src="~/Images/@Model.ImgUrl" class="img-circle" width="200" alt="@Model.Name's Image" />
+                </div>
+
+
+                <div class="form-group">
+                    <label asp-for="@Model.Age" class="col-form-label"></label>
+                    <input asp-for="@Model.Age" class="form-control" readonly />
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="@Model.Gender" class="col-form-label"></label>
+                    <input asp-for="@Model.Gender" class="form-control" readonly />
+                </div>
+                
+                <div class="form-group">
+                    <label asp-for="@Model.Email" class="col-form-label"></label>
+                    <input asp-for="@Model.Email" class="form-control" readonly />
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="@Model.deptId" class="form-label mt-4"> Department </label>
+                    <input asp-for="@Model.department.DeptName" class="form-control" readonly />
+
+                </div>
+
+
+                <br />
+                <a class="btn btn-success" asp-action="Update" asp-route-id="@Model.Id">Edit</a> |
+                <a class="btn btn-light" asp-action="Index" asp-route-id="@Model.Id">Back To List</a>
+
+            </form>
+        </div>
+    </div>

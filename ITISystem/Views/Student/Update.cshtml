@@ -1,0 +1,80 @@
+﻿@model Student
+@{
+    Layout = "_Layout2";
+    ViewData["Title"] = "Update - Student";
+
+    var deptsl = new SelectList(ViewBag.Departments, "DeptId", "DeptName");
+
+}
+
+
+    <div class="row mx-5 mb-3 mt-3">
+        <div class="col-8">
+            <form asp-action="Update" asp-controller="Student" enctype="multipart/form-data">
+                <div class="form-group has-danger">
+
+                    <input asp-for="@Model.Id" class="form-control"hidden disabled />
+
+                    <label asp-for="@Model.Name" class="col-form-label"></label>
+                    <input asp-for="@Model.Name" class="form-control" />
+                    <span asp-validation-for="Name" class="text-danger"></span>
+                </div>
+                <div class="form-group has-danger">
+                    <label asp-for="@Model.ImgUrl" class="col-form-label">@Model.Name's Image</label>
+                    <br />
+                    <img src="~/Images/@Model.ImgUrl" class="img-circle" width="200" alt="@Model.Name's Image" />
+                </div>
+                <div class="mb-3">
+                    <label asp-for="@Model.stdImg" class="col-form-label">Student Image</label>
+                    <input asp-for="@Model.stdImg" class="form-control" />
+                    <span asp-validation-for="stdImg" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="@Model.Age" class="col-form-label"></label>
+                    <input asp-for="@Model.Age" class="form-control" />
+                    <span asp-validation-for="Age" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="@Model.Email" class="col-form-label"></label>
+                    <input asp-for="@Model.Email" class="form-control" />
+                    <span asp-validation-for="Email" class="text-danger"></span>
+                </div>
+                <div class="mb-3">
+                    <label asp-for="@Model.Password" class="col-form-label"></label>
+                    <input asp-for="@Model.Password" class="form-control" />
+                    <span asp-validation-for="Password" class="text-danger"></span>
+                </div>
+                <div class="mb-3">
+                    <label asp-for="@Model.CPassword" class="col-form-label"></label>
+                    <input asp-for="@Model.CPassword" class="form-control" />
+                    <span asp-validation-for="CPassword" class="text-danger"></span>
+                </div>
+                <div class="form-group has-danger">
+                    <label asp-for="@Model.Gender" class="col-form-label"></label>
+                    <input asp-for="@Model.Gender" class="form-control" />
+                    <span asp-validation-for="Gender" class="text-danger"></span>
+                </div>
+
+                <div class="mb-3">
+                    <label for="deptId" class="form-label">Department</label>
+                    <select asp-for="@Model.deptId" class="form-select" asp-items="deptsl">
+                    </select>
+                    <span asp-validation-for="@Model.deptId" class="text-danger"></span>
+
+                </div>
+
+                <br />
+                <input type="Submit" value="Update" class="btn btn-primary" /> |
+                <a asp-action="Index" class="btn btn-light">Back To List</a>
+
+            </form>
+        </div>
+    </div>
+
+@*     <script src="~/lib/jquery/dist/jquery.js"></script>
+    <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+    <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+ *@
+@section ValidationLibraries {
+    <partial name="_ValidationScriptsPartial" />
+}

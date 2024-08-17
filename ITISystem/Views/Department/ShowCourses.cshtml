@@ -1,0 +1,30 @@
+﻿@model Department
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>ShowCourses</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+
+</head>
+<body>
+    <h1 class="alert alert-danger">
+        @Model.DeptName :: @Model.Capacity
+
+    </h1>
+    <ul>
+        @foreach (var item in Model.Courses)
+        {
+            <li>
+                @item.CrsName
+                <a asp-action="AddGrade" asp-controller="Department" asp-route-deptId="@Model.DeptId" asp-route-crsId="@item.Id">Add Grades</a>
+            </li>
+        }
+    </ul>
+</body>
+</html>
