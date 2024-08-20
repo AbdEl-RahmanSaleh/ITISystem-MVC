@@ -4,9 +4,14 @@ namespace ITISystem.Models.Context
 {
     public class ITIContext : DbContext
     {
-        //public ITIContext(DbContextOptions options) : base(options)
-        //{
-        //}
+        public ITIContext(DbContextOptions options) : base(options)
+        {
+        }
+
+        public ITIContext()
+        {
+            
+        }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<StudentCourse>().HasKey(PK => new { PK.StudentId, PK.CourseId });
@@ -28,5 +33,7 @@ namespace ITISystem.Models.Context
         public DbSet<Instructor> Instructors { get; set; }
         public DbSet<StudentCourse> StudentCourses { get; set; }
         public DbSet<InstructorCourse> InstructorCourses { get; set; }
+        public DbSet<User> Users { get; set; }
+        public DbSet<Role> Roles { get; set; }
     }
 }

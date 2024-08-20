@@ -1,13 +1,16 @@
 ﻿using ITISystem.Models;
 using ITISystem.Models.Context;
+using ITISystem.Service.Interfaces;
 
 namespace ITISystem.Service
 {
     public class DepartmentService : IDepartmentService
     {
-        ITIContext context = new ITIContext();
-
-
+        private readonly ITIContext context;
+        public DepartmentService(ITIContext _context)
+        {
+            context = _context;
+        }
         public List<Department> GetAll()
             => context.Departments.Where(d => d.Active == true).ToList();
 

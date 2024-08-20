@@ -1,6 +1,6 @@
 ﻿using ITISystem.Models;
 
-namespace ITISystem.Service
+namespace ITISystem.Service.Interfaces
 {
     public interface IDepartmentService
     {

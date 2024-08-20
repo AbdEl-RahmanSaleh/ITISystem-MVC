@@ -1,4 +1,4 @@
-﻿namespace ITISystem.Models
+﻿namespace ITISystem.ViewModels
 {
     public class DepartmentViewModel
     {

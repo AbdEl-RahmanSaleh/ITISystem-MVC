@@ -1,5 +1,7 @@
 using ITISystem.Models.Context;
 using ITISystem.Service;
+using ITISystem.Service.Interfaces;
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.EntityFrameworkCore;
 
 namespace ITISystem
@@ -15,6 +17,24 @@ namespace ITISystem
             //builder.Services.AddScoped<IDepartmentService, DepartmentService2>();
             builder.Services.AddScoped<IDepartmentService, DepartmentService>();
             builder.Services.AddScoped<IStudentService, StudentService>();
+            builder.Services.AddScoped<IUserService, UserService>();
+            builder.Services.AddScoped<IRoleService, RoleService>();
+            builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme).AddCookie();
+            builder.Services.AddDbContext<ITIContext>(options =>
+            {
+
+                options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
+            });
+
+
+            
+
+
+            builder.Services.AddSession(options =>
+            {
+                options.IdleTimeout = TimeSpan.FromMinutes(2);
+            });
+
 
 
             var app = builder.Build();
@@ -33,11 +53,14 @@ namespace ITISystem
 
             app.UseRouting();
 
+            app.UseAuthentication();
             app.UseAuthorization();
+
+            app.UseSession();
 
             app.MapControllerRoute(
                 name: "default",
-                pattern: "{controller=Home}/{action=Index}/{id?}");
+                pattern: "{controller=Role}/{action=Index}/{id?}");
 
 
             #region Middleware Lab

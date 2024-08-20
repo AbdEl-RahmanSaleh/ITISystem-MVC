@@ -2,19 +2,22 @@
 using ITISystem.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using ITISystem.Service;
+using Microsoft.AspNetCore.Authorization;
+using ITISystem.Service.Interfaces;
 
 namespace ITISystem.Controllers
 {
+    [Authorize(Roles ="Instructor,Admin")]
     public class DepartmentController : Controller
     {
-        ITIContext context = new ITIContext();
+        ITIContext context;
         //DepartmentService departmentService = new DepartmentService();
 
         IDepartmentService departmentService;
-        public DepartmentController(IDepartmentService _departmentService)
+        public DepartmentController(IDepartmentService _departmentService, ITIContext _context)
         {
             departmentService = _departmentService;
+            context = _context;
         }
         //public IActionResult MyFun([FromServices]IDepartmentService ds)
         //{

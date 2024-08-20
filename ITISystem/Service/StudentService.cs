@@ -1,13 +1,21 @@
 ﻿using ITISystem.Models;
 using ITISystem.Models.Context;
+using ITISystem.Service.Interfaces;
 using Microsoft.EntityFrameworkCore;
 
 namespace ITISystem.Service
 {
     public class StudentService : IStudentService
     {
-        ITIContext context = new ITIContext();
+        private readonly ITIContext context;
+        public StudentService(ITIContext _context)
+        {
+            context = _context;
+        }
+        public StudentService()
+        {
 
+        }
 
         public List<Student> GetAll() 
             => context.Students.Include(s => s.department).ToList();

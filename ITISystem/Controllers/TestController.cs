@@ -51,6 +51,38 @@ namespace ITISystem.Controllers
             return View();
         }
 
+        //Cookies
+        public IActionResult AddData(int id , string name)
+        {
 
+            CookieOptions cop = new CookieOptions() { Expires = DateTime.Now.AddMinutes(1)};
+            Response.Cookies.Append("sid", id.ToString(),cop);
+            Response.Cookies.Append("sname", name, cop);
+
+            return Content($"{id} :: {name}");
+        }    
+        public IActionResult ReadData()
+        {
+            int id = int.Parse(Request.Cookies["sid"]);
+            string name = Request.Cookies["sname"];
+            return Content($"{id} :: {name}");
+        }    
+        
+        //Session
+        public IActionResult AddData2(int id , string name)
+        {
+
+            HttpContext.Session.SetInt32("id", id);
+            HttpContext.Session.SetString("name", name);
+
+            return Content($"{id} :: {name}");
+        }    
+        public IActionResult ReadData2()
+        {
+            //HttpContext.Session.Clear();
+            int? id = HttpContext.Session.GetInt32("id");
+            string name = HttpContext.Session.GetString("name");
+            return Content($"{id} :: {name}");
+        }    
     }
 }

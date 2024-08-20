@@ -7,78 +7,78 @@
 }
 
 
-    <h1 class="mx-2">All Students</h1>
-    <br />
-    <a href="/student/create" class="btn btn-success mx-2">
-        Add new Student </a>
-    <br />
-    <br />
-    <div class="mx-auto" style="width:90%">
+<h1 class="mx-2">All Students</h1>
+<br />
+<a href="/student/create" class="btn btn-success mx-2">
+    Add new Student </a>
+<br />
+<br />
+<div class="mx-auto" style="width:90%">
 
-    <table class="table table-bordered table-hover">
-        <tr>
-            <th>
-                Name
-            </th>
-            <th>
-                Age
-            </th>
+<table class="table table-bordered table-hover">
+    <tr>
+        <th>
+            Name
+        </th>
+        <th>
+            Age
+        </th>
 
-            <th>
-                Email
-            </th>
+        <th>
+            Email
+        </th>
 
-            <th>
-                Department
-            </th>
-            <th>
-                Details
-            </th>
-            <th>
-                Update
-            </th>
-            <th>
-                Delete
-            </th>
-        </tr>
+        <th>
+            Department
+        </th>
+        <th>
+            Details
+        </th>
+        <th>
+            Update
+        </th>
+        <th>
+            Delete
+        </th>
+    </tr>
 
 
-        @if (Model.Count() > 0)
+    @if (Model.Count() > 0)
+    {
+        @foreach (var std in Model)
         {
-            @foreach (var std in Model)
-            {
-                <tr>
-                    <td>
-                        @std.Name
-                    </td>
+            <tr>
+                <td>
+                    @std.Name
+                </td>
 
-                    <td>
-                        @std.Age
-                    </td>
+                <td>
+                    @std.Age
+                </td>
 
-                    <td>
-                        @std.Email
+                <td>
+                    @std.Email
+                </td>
+                <td>
+                    @std.department.DeptName
+                </td>
+                <td>
+                    <a href="/student/details/@std.Id" class="btn btn-info" >Details</a>
+                </td>
+                <td>
+                        <a class="btn btn-secondary" asp-controller="Student" asp-action="update" asp-route-id="@std.Id">Update</a>
                     </td>
-                    <td>
-                        @std.department.DeptName
+                <td>
+                        <a class="btn btn-danger"  asp-controller="Student" asp-action="Delete" asp-route-id="@std.Id">Remove</a>
                     </td>
-                    <td>
-                        <a href="/student/details/@std.Id" class="btn btn-info" >Details</a>
-                    </td>
-                    <td>
-                            <a class="btn btn-secondary" asp-controller="Student" asp-action="update" asp-route-id="@std.Id">Update</a>
-                        </td>
-                    <td>
-                            <a class="btn btn-danger"  asp-controller="Student" asp-action="Delete" asp-route-id="@std.Id">Remove</a>
-                        </td>
-                </tr>
-            }
+            </tr>
         }
-        else
-        {
-            <td colspan="5" class="alert alert-danger">No Students Exists</td>
-        }
+    }
+    else
+    {
+        <td colspan="5" class="alert alert-danger">No Students Exists</td>
+    }
 
-    </table>
-    </div>
+</table>
+</div>
 

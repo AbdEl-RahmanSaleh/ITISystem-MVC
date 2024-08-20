@@ -1,19 +1,29 @@
 ﻿using ITISystem.Models;
 using ITISystem.Models.Context;
 using ITISystem.Service;
+using ITISystem.Service.Interfaces;
 using ITISystem.Utilities;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 
 namespace ITISystem.Controllers
 {
+    [Authorize(Roles ="Student,Admin")]
     public class StudentController : Controller
     {
 
-        ITIContext context = new ITIContext();
-        DepartmentService departmentService = new DepartmentService();
-        StudentService studentService = new StudentService();
+        ITIContext context ;
+        IDepartmentService departmentService ;
+        IStudentService studentService;
+
+        public StudentController(IDepartmentService _departmentService,IStudentService _studentService,ITIContext _context)
+        {
+            studentService = _studentService;
+            departmentService = _departmentService;
+            context = _context;
+        }
         public IActionResult Index()
         {
             var students = studentService.GetAll() ;
